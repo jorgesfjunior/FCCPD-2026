@@ -1,21 +1,20 @@
-public class RaceCondition{
+public class RaceCondition {
 
-    static int contador = 0; // variável compartilhada
-
-    static class Incrementador implements Runnable {
-
-        @Override
-        public void run() {
-            for (int i = 0; i < 10000; i++) {
-                contador++; // operação NÃO atômica
-            }
-        }
-    }
+    static int counter = 0; // Variável compartilhada
 
     public static void main(String[] args) throws InterruptedException {
 
-        Thread t1 = new Thread(new Incrementador());
-        Thread t2 = new Thread(new Incrementador());
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 100000; i++) {
+                counter++; // operação NÃO atômica
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 100000; i++) {
+                counter++; // operação NÃO atômica
+            }
+        });
 
         t1.start();
         t2.start();
@@ -23,6 +22,6 @@ public class RaceCondition{
         t1.join();
         t2.join();
 
-        System.out.println("Valor final do contador: " + contador);
+        System.out.println("Valor final do contador: " + counter);
     }
 }

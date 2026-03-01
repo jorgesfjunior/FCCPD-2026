@@ -7,7 +7,7 @@ public class Multiprocessos {
 
     public static void main(String[] args) throws Exception {
 
-        int quantidade = 3; // número de processos paralelos
+        int quantidade = 5; // número de processos paralelos
         List<Process> processos = new ArrayList<>();
 
         for (int i = 1; i <= quantidade; i++) {

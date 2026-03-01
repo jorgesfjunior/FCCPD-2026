@@ -14,7 +14,7 @@ public class ProdutorConsumidor {
         @Override
         public void run() {
             try {
-                fila.put("Mensagem do produtor");
+                fila.put("Mensagem do produtor teste");
                 System.out.println("Produtor enviou a mensagem");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
